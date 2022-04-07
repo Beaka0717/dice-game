@@ -1,4 +1,6 @@
 //  Global huwisagchuud use for everywhere
+// Game over tolowiin huwisagch
+var isNewGame;
 
 // shows which player is playing
 var activePlayer = 0;
@@ -15,7 +17,8 @@ initGame();
 
 //   preparing to new start
 function initGame(){
-
+// game start tolow
+    isNewGame = true;
     activePlayer = 0;
     scores = [0, 0];
     roundScore = 0;
@@ -45,6 +48,7 @@ function initGame(){
 // Dice shideh eventListener
 
 document.querySelector(".btn-roll").addEventListener("click", function(){
+if(isNewGame  === true){
     // get random numbers from (1-6)
     var diceNumber = Math.floor(Math.random()*6)+1;
     // shooni zurgiig event deer gargaj irne
@@ -70,17 +74,23 @@ document.querySelector(".btn-roll").addEventListener("click", function(){
     //      }else{
     //      activePlayer = 0;
     //         }
-        }
+        } 
+        }else{
+            alert('Start new game');
+    }
 });
 // hold btn eventListener
 document.querySelector(".btn-hold").addEventListener("click",function(){
+    if(isNewGame === true){
     // playeriin tsugluulsan onoog glabal onoon deer ni nemeh
     scores[activePlayer] = scores[activePlayer] + roundScore;
 
     document.getElementById("score-" + activePlayer).textContent = scores[activePlayer];
 
     // ug player hojson esehiig shalgah
-    if(scores[activePlayer] >= 100){
+    if(scores[activePlayer] >= 10){
+        // game over tolow
+        isNewGame  = false;
         // winner gsn textiig nerniiih ni orond gargana
         document.getElementById("name-" + activePlayer).textContent = "WINNER!";
         document.querySelector(".player-" +activePlayer + "-panel").classList.add("winner");
@@ -91,7 +101,9 @@ document.querySelector(".btn-hold").addEventListener("click",function(){
         switchToNextPlayer();
     
     }
-   
+   }else{
+       alert("Start new game");
+   }
 
     // delgets deer onoog ni oorchlono
     document.getElementById('score-' + activePlayer).textContent = scores[activePlayer];
