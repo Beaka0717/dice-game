@@ -88,7 +88,7 @@ document.querySelector(".btn-hold").addEventListener("click",function(){
     document.getElementById("score-" + activePlayer).textContent = scores[activePlayer];
 
     // ug player hojson esehiig shalgah
-    if(scores[activePlayer] >= 10){
+    if(scores[activePlayer] >= 100){
         // game over tolow
         isNewGame  = false;
         // winner gsn textiig nerniiih ni orond gargana
